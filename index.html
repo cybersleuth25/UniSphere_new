@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UniSphere</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Poppins:wght@600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="brand">
+      <div><img src="Logo.jpg" alt="UniSphere Logo" class="logo"></div>
+      <div class="title">
+        <h1>UniSphere</h1>
+        <p>Stay Updated. Stay Connected.</p>
+      </div>
+    </div>
+    <div class="controls">
+      <div class="search" title="Search posts and users">
+        <i class="fas fa-search"></i>
+        <input id="searchInput" placeholder="Search..." />
+      </div>
+      <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+          <input type="checkbox" id="checkbox" />
+          <div class="slider round"></div>
+        </label>
+      </div>
+      <div id="auth-buttons" class="auth-buttons-wrapper"></div>
+      <button class="btn" id="addPostBtn" style="display:none">+ Post</button>
+    </div>
+  </header>
+
+  <div class="main-content">
+
+    <h1 id="welcomeMessage" class="main-heading"></h1>
+
+    <main class="main">
+      <section>
+        <nav class="tabs" role="tablist" aria-label="Main tabs">
+          <div class="tab active" data-tab="announcements">Announcements</div>
+          <div class="tab" data-tab="events">Events</div>
+          <div class="tab" data-tab="lostfound">Lost &amp; Found</div>
+          <div class="tab" data-tab="resources">Resource Exchange</div>
+          <div class="tab" data-tab="groups">Community Connect</div>
+          <div class="tab" data-tab="courses">Courses</div>
+        </nav>
+        <div id="contentArea"></div>
+      </section>
+      <aside class="sidebar">
+        <h3 style="margin-top:0">Quick Actions</h3>
+        <p class="small">Easily create a new post by selecting a category.</p>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <button class="btn secondary admin-only-post" data-post-type="announcements">Add Announcement</button>
+          <button class="btn secondary admin-only-post" data-post-type="events">Add Event</button>
+          <button class="btn secondary student-post" data-post-type="lostfound">Add Lost/Found</button>
+          <button class="btn secondary student-post" data-post-type="resources">Add Resource</button>
+          <button class="btn secondary student-post" data-post-type="groups">Create Group</button>
+          <button class="btn secondary student-post" data-post-type="courses">Add Course</button>
+        </div>
+        <hr style="margin:16px 0; border:none; border-top:1px solid var(--muted-elements)">
+        <h4 style="margin:6px 0">About UniSphere</h4>
+        <p class="small">A student-centric hub for announcements, events, resource sharing, and more.</p>
+      </aside>
+    </main>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <div id="postModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h2>Create New Post</h2>
+      <form id="postForm" enctype="multipart/form-data">
+        <input type="hidden" id="postType" name="postType">
+        <input type="hidden" id="postId" name="postId">
+        <div class="form-group">
+          <label for="postTitle">Title</label>
+          <input type="text" id="postTitle" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="postDesc">Description</label>
+          <textarea id="postDesc" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="postImage">Image (Optional)</label>
+          <input type="file" id="postImage" name="image" accept="image/*">
+        </div>
+        <button type="submit" class="btn">Submit Post</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="imagePreviewModal" class="modal">
+    <div class="modal-content"
+      style="background: none; border: none; box-shadow: none; max-width: min(70vw, 800px); max-height: 80vh;">
+      <span class="close-btn" style="color: white; font-size: 36px; text-shadow: 1px 1px 3px black;">&times;</span>
+      <img id="fullSizeImage" src="" alt="Full-size preview" style="width: 100%; height: 100%; object-fit: contain;">
+    </div>
+  </div>
+  <footer class="footer-section">
+    <div class="footer-content">
+      <div class="footer-column">
+        <h3>ABOUT US</h3>
+        <ul>
+          <li><a href="#">Pricing</a></li>
+          <li><a href="#">Testimonials</a></li>
+          <li><a href="#">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>SUPPORT</h3>
+        <ul>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Privacy</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>COMMUNITY</h3>
+        <ul>
+          <li><a href="#">Forum</a></li>
+          <li><a href="#">Events</a></li>
+          <li><a href="#">Partners</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 UniSphere. All rights reserved.
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
