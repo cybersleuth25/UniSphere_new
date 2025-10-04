@@ -72,6 +72,7 @@ function fetchPostsAndRender(tab) {
                     <h3>${x.title}</h3>
                     <div class="description-wrapper">
                         <div class="card-description">${descriptionHtml}</div>
+                        <button class="read-more-btn">Read More</button>
                     </div>
                     <div class="post-meta">
                         <button class="like-btn" data-post-id="${x.id}"><i class="fas fa-thumbs-up"></i> <span class="like-count">${x.likes || 0}</span></button>
@@ -81,6 +82,25 @@ function fetchPostsAndRender(tab) {
             </article>`;
         }).join('');
         contentArea.innerHTML = `<div class="cards">${cardsHTML}</div>`;
+
+        document.querySelectorAll('.card').forEach(card => {
+            const description = card.querySelector('.card-description');
+            const readMoreBtn = card.querySelector('.read-more-btn');
+
+            if (description.scrollHeight > description.clientHeight) {
+                readMoreBtn.style.display = 'block';
+            }
+
+            readMoreBtn.addEventListener('click', () => {
+                description.classList.toggle('expanded');
+                if (description.classList.contains('expanded')) {
+                    readMoreBtn.textContent = 'Read Less';
+                } else {
+                    readMoreBtn.textContent = 'Read More';
+                }
+            });
+        });
+
         document.querySelectorAll('.edit-btn').forEach(btn => btn.addEventListener('click', handleEditClick));
         document.querySelectorAll('.delete-btn').forEach(btn => btn.addEventListener('click', handleDeleteClick));
         document.querySelectorAll('.like-btn').forEach(btn => btn.addEventListener('click', handleLikeClick));

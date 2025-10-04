@@ -94,7 +94,7 @@ body.light-theme .header {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px;
-  flex-grow: 1; 
+  flex-grow: 1;
 }
 
 .main {
@@ -159,13 +159,16 @@ body.light-theme .header {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   margin: 8px 0;
   color: var(--text-color);
+  max-height: 4.5em; /* Fallback for non-webkit browsers */
+  transition: max-height 0.3s ease;
 }
 
 .card-description.expanded {
-  overflow: visible;
-  display: block;
+  -webkit-line-clamp: unset;
+  max-height: 1000px; /* A large value to ensure full content is visible */
 }
 
 .read-more-btn {
@@ -176,11 +179,7 @@ body.light-theme .header {
   font-weight: 600;
   padding: 4px 0;
   text-align: left;
-  display: none;
-}
-
-.read-more-btn.visible {
-  display: block;
+  display: none; /* Hidden by default */
 }
 
 
@@ -789,20 +788,4 @@ body.light-theme .form-group select:focus {
 .toast.show {
     visibility: visible;
     opacity: 1;
-}
-.card-description {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  margin: 8px 0;
-  color: var(--text-color);
-  max-height: 4.5em;
-}
-
-.card-description.expanded {
-  overflow: visible;
-  display: block;
-  max-height: none;
 }
